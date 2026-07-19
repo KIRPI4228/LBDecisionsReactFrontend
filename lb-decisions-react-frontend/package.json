@@ -10,10 +10,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-three/fiber": "^9.6.1",
+    "@types/three": "^0.184.1",
     "axios": "^1.16.1",
+    "chart.js": "^4.5.1",
+    "i": "^0.3.7",
+    "npm": "^11.18.0",
     "react": "^19.2.6",
+    "react-chartjs-2": "^5.3.1",
     "react-dom": "^19.2.6",
-    "react-router-dom": "^7.15.1"
+    "react-router-dom": "^7.15.1",
+    "recharts": "^3.9.2",
+    "three": "^0.184.0"
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",

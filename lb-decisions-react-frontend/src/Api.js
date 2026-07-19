@@ -1,22 +1,26 @@
 import axios from "axios"
 
-const url = "http://45.150.64.134:4444";
+const url = "http://localhost:4444";
 
 export default class Api {
 
-    static calculateVentedBox = (parameters) => {
-        return this.#post(`${url}/calc`, parameters);
+    static calculateVentedBox = async (parameters) => {
+        return await this.#post(`${url}/calc`, parameters);
     }
 
-    static #post = (url, body, headers) => {
-        return this.#sendRequest(axios.post, url, body, headers);
+    static getParamtersList = async () => {
+        return await this.#get(`${url}/parameters-list`);
     }
 
-    static #get = (url, body, headers) => {
-        return this.#sendRequest(axios.get, url, body, headers);
+    static #post = async (url, body, headers) => {
+        return await this.#sendRequest(axios.post, url, body, headers);
+    }
+
+    static #get = async (url, body, headers) => {
+        return await this.#sendRequest(axios.get, url, body, headers);
     }
     
-    static #sendRequest = (method, url, body, headers) => {
-        return method(url, body, headers);
+    static #sendRequest = async (method, url, body, headers) => {
+        return await method(url, body, headers);
     }
 }

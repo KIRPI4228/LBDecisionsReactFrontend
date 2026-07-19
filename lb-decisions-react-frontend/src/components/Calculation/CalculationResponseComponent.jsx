@@ -1,10 +1,45 @@
+import { useRef } from "react";
+import AmplitudeResponseGraph from "./AmplitudeResponseGraph";
+
+
+const Part = (props) => {
+  const meshRef = useRef();
+
+  const part = props.part;
+  const thickness = props.thickness;
+
+  return (
+    <mesh
+      {...props}
+      position={part.position}
+
+
+
+      scale={[
+        part.width, 
+        part.height,
+        part.width
+      ]}
+
+      ref={meshRef}>
+        <boxGeometry args={[1, 1, 1]} />
+        <meshStandardMaterial color='orange' />
+    </mesh>
+  );
+}
+
+
 
 
 const CalculationResponseComponent = (props) => {
   const answer = props.answer;
-    if (answer.box === undefined) {
-      return (<></>);
+    if (answer === undefined || answer.box === undefined) {
+      console.log("!");
+      return (<>
+      
+      </>);
     }
+    console.log(answer.amplitudeResponse)
     return (
       <>
         <div className="component-container">
@@ -29,8 +64,13 @@ const CalculationResponseComponent = (props) => {
           <h4 className="component-text-name">Высота: {answer.box.internalDimensions.y}</h4>
           <h4 className="component-text-name">Глубина: {answer.box.internalDimensions.z}</h4>
         </div>
+
+        <AmplitudeResponseGraph amplitudeResponse={answer.amplitudeResponse} />
       </>
     );
 }
-
+/*new Part(`${box.doubleFront > 1 ? "double" : ""} front/back`, internalDimensions.x, internalDimensions.y, 1 + box.doubleFront),
+            new Part("sides", overallDimensions.z, internalDimensions.y, 2),
+            <AmplitudeResponseGraph amplitudeResponse={answer.amplitudeResponse} />
+            new Part("top/bottom", overallDimensions.x, overallDimensions.z, 2)*/
 export default CalculationResponseComponent;
